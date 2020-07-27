@@ -49,7 +49,7 @@ int			pg_options(t_env *env, int argc, char **argv)
 		else if (opt == 'v')
 			env->flags |= FLAGS_V;
 		else if (opt == 'D')
-			env->df_flag = TRUE;
+			env->df_flag = 1;
 		else if (opt == 'c')
 			(ft_atoi(optarg) >= 0) ? env->count = ft_atoi(optarg) : pg_e_i();
 		else if (opt == 'i')

@@ -36,11 +36,11 @@ static t_bool	pg_timeout(t_env *env)
 		if (env->flags & FLAGS_V)
 			printf("Request timeout for icmp_seq %hu\n", env->seq);
 		alarm(0);
-		env->timeout_flag = FALSE;
+		env->timeout_flag = 0;
 		env->seq++;
-		return (FALSE);
+		return (0);
 	}
-	return (TRUE);
+	return (1);
 }
 
 static t_bool	pg_loop_receive(t_env *env,
@@ -54,8 +54,8 @@ static t_bool	pg_loop_receive(t_env *env,
 	pg_configure_receive(env);
 	nb_receive = recvmsg(env->s, &(env->msg), MSG_DONTWAIT);
 	gettimeofday(&tv_end, NULL);
-	if (pg_timeout(env) == FALSE)
-		return (FALSE);
+	if (pg_timeout(env) == 0)
+		return (0);
 	if (env->icmp->icmp_hun.ih_idseq.icd_id == env->pid)
 	{
 		duration = (((double)tv_end.tv_sec * 1000000.0 + tv_end.tv_usec) - \
@@ -65,18 +65,18 @@ static t_bool	pg_loop_receive(t_env *env,
 		pg_display_response(env, nb_receive, env->seq, duration);
 		pg_timer(env->interval);
 		alarm(0);
-		env->timeout_flag = FALSE;
+		env->timeout_flag = 0;
 		env->seq++;
-		return (FALSE);
+		return (0);
 	}
-	return (TRUE);
+	return (1);
 }
 
 static t_bool	pg_is_finish(t_env *env)
 {
 	if (env->packets_send == env->count && env->count != 0)
-		return (FALSE);
-	return (TRUE);
+		return (0);
+	return (1);
 }
 
 void			pg_loop(t_env *env)
