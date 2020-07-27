@@ -34,7 +34,7 @@ void			pg_sig_handler(int sig)
 	if (sig == SIGINT)
 		pg_display_stats(&env);
 	if (sig == SIGALRM)
-		env.timeout_flag = ;
+		env.timeout_flag = 0;
 }
 
 char			*pg_get_ip_from_hostname(char *hostname)
