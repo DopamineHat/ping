@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ping.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybarbier <ybarbier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/04 16:51:48 by ybarbier          #+#    #+#             */
-/*   Updated: 2016/04/11 16:54:10 by ybarbier         ###   ########.fr       */
+/*   Created: 2020/07/27 14:49:32 by rpagot            #+#    #+#             */
+/*   Updated: 2020/07/27 14:50:10 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 # include <arpa/inet.h>
 # include <float.h>
 # include <math.h>
-
-# define TRUE 1
-# define FALSE 0
 
 //typedef unsigned char	t_bool;
 
