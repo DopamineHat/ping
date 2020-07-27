@@ -3,20 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ybarbier <ybarbier@student.42.fr>          +#+  +:+       +#+         #
+#    By: rpagot <rpagot@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/03/04 16:13:54 by ybarbier          #+#    #+#              #
-#    Updated: 2016/04/11 17:10:28 by ybarbier         ###   ########.fr        #
+#    Created: 2020/07/27 14:33:56 by rpagot            #+#    #+#              #
+#    Updated: 2020/07/27 14:34:03 by rpagot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#____________CONFIG____________#
 
 NAME = ft_ping
 
 PATH_SRC = ./src/
 
-PATH_INC = ./inc/
+PATH_INC = ./include/
 
 PATH_INC_LIBFT = ./libft/includes/
 
@@ -26,8 +25,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror $(INCLUDES) -g
 LIBS = -L libft/ -lft -lm
 
-#____________FILES____________#
-
 SRC =	main.c \
 	pg_connect.c \
 	pg_loop.c \
@@ -35,8 +32,6 @@ SRC =	main.c \
 	pg_display.c
 
 OBJ = $(addprefix $(PATH_SRC), $(SRC:.c=.o))
-
-#____________RULES____________#
 
 .PHONY: clean fclean re
 
@@ -46,17 +41,10 @@ $(NAME): $(OBJ)
 	make -C libft/
 	$(CC) $(OBJ) -o $(NAME) $(LIBS)
 
-
-#___CLEAN___#
-
 clean:
 	rm -f $(OBJ)
 
-#___FCLEAN___#
-
 fclean: clean
 	rm -f $(NAME)
-
-#___RE___#
 
 re: fclean all
