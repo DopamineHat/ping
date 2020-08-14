@@ -1,4 +1,4 @@
-nclude <stdio.h> 
+#include <stdio.h> 
 #include <sys/types.h> 
 #include <sys/socket.h> 
 #include <netinet/in.h> 
@@ -21,7 +21,7 @@ nclude <stdio.h>
 #define PORT_NO 0 
 
 // Automatic port number 
-#define PING_SLEEP_RATE 1000000 x 
+#define PING_SLEEP_RATE 1000000  
 
 // Gives the timeout delay for receiving packets 
 // in seconds 
@@ -132,8 +132,7 @@ void send_ping(int ping_sockfd, struct sockaddr_in *ping_addr,
 	if (setsockopt(ping_sockfd, SOL_IP, IP_TTL, 
 			&ttl_val, sizeof(ttl_val)) != 0) 
 	{ 
-		printf("\nSetting socket options 
-				to TTL failed!\n"); 
+		printf("\nSetting socket option to TTL failed!\n"); 
 		return; 
 	} 
 
@@ -192,8 +191,7 @@ void send_ping(int ping_sockfd, struct sockaddr_in *ping_addr,
 		{ 
 			clock_gettime(CLOCK_MONOTONIC, &time_end); 
 			
-			double timeElapsed = ((double)(time_end.tv_nsec - 
-								time_start.tv_nsec))/1000000.0 
+			double timeElapsed = ((double)(time_end.tv_nsec - time_start.tv_nsec))/1000000.0  ;
 			rtt_msec = (time_end.tv_sec- 
 						time_start.tv_sec) * 1000.0 
 						+ timeElapsed; 
@@ -203,18 +201,11 @@ void send_ping(int ping_sockfd, struct sockaddr_in *ping_addr,
 			{ 
 				if(!(pckt.hdr.type ==69 && pckt.hdr.code==0)) 
 				{ 
-					printf("Error..Packet received with ICMP 
-						type %d code %d\n", 
-						pckt.hdr.type, pckt.hdr.code); 
+					printf("Error..Packet received with ICMP type %d code %d\n", pckt.hdr.type, pckt.hdr.code); 
 				} 
 				else
 				{ 
-					printf("%d bytes from %s (h: %s) 
-						(%s) msg_seq=%d ttl=%d 
-						rtt = %Lf ms.\n", 
-						PING_PKT_S, ping_dom, rev_host, 
-						ping_ip, msg_count, 
-						ttl_val, rtt_msec); 
+					printf("%d bytes from %s (h: %s) (%s) msg_seq=%d ttl=%d rtt = %Lf ms.\n", PING_PKT_S, ping_dom, rev_host, ping_ip, msg_count, ttl_val, rtt_msec); 
 
 					msg_received_count++; 
 				} 
@@ -225,15 +216,9 @@ void send_ping(int ping_sockfd, struct sockaddr_in *ping_addr,
 	double timeElapsed = ((double)(tfe.tv_nsec - 
 						tfs.tv_nsec))/1000000.0; 
 	
-	total_msec = (tfe.tv_sec-tfs.tv_sec)*1000.0+ 
-						timeElapsed 
-					
+	total_msec = (tfe.tv_sec-tfs.tv_sec)*1000.0+ timeElapsed ;
 	printf("\n===%s ping statistics===\n", ping_ip); 
-	printf("\n%d packets sent, %d packets received, %f percent 
-		packet loss. Total time: %Lf ms.\n\n", 
-		msg_count, msg_received_count, 
-		((msg_count - msg_received_count)/msg_count) * 100.0, 
-		total_msec); 
+	printf("\n%d packets sent, %d packets received, %f percent packet loss. Total time: %Lf ms.\n\n", msg_count, msg_received_count, ((msg_count - msg_received_count)/msg_count) * 100.0, total_msec); 
 } 
 
 // Driver Code 
@@ -254,8 +239,7 @@ int main(int argc, char *argv[])
 	ip_addr = dns_lookup(argv[1], &addr_con); 
 	if(ip_addr==NULL) 
 	{ 
-		printf("\nDNS lookup failed! Could 
-				not resolve hostname!\n"); 
+		printf("\nDNS lookup failed! Coould not resolve hostname!\n"); 
 		return 0; 
 	} 
 
